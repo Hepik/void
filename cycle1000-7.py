@@ -4,6 +4,7 @@ class Ghoul:
     while y > 6:
         y = y - 7
         print(y)
+    print("Finish")
 
 
 Ghoul()
