@@ -14,7 +14,7 @@ class Sender(Generator):
 
     def post(self):
         print("posting...")
-        numbers = str(object1.random_list_of_numbers)
+        numbers = str(object1.random_list_of_numbers[0], )
 
         self.client.publish('/numbers', payload=numbers, qos=0, retain=False)
 
