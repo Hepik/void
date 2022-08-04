@@ -15,7 +15,7 @@ class Receiver:
     def on_message(self, client, userdata, msg):
         print(msg.topic + " " + str(msg.payload))
 
-        with open('numbers.csv', 'b+') as file:
+        with open('numbers.csv', '+') as file:
             writer = csv.writer(file)
             writer.writerow(msg.payload)
 
