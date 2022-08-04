@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 
-from generator import Generator, object1
+from generator import Generator, generator
 
 
 class Sender(Generator):
@@ -12,18 +12,25 @@ class Sender(Generator):
         self.client.on_connect = self._on_connect
         self.client.loop_forever()
 
-    def post(self):
+    def post(self, number):
         print("posting...")
-        numbers = str(object1.random_list_of_numbers[0], )
 
-        self.client.publish('/numbers', payload=numbers, qos=0, retain=False)
+        number = str(number)
+
+        self.client.publish('/number', payload=number, qos=0, retain=False)
 
     def _on_connect(self, client, userdata, flags, rc):
         print("Connected with result code " + str(rc))
-        self.post()
+        self.poster()
+
+
+    def poster(self):
+        for i in generator.get_random_numbers():
+            self.post(i)
 
     def _on_message(self, client, userdata, msg):
         print(msg.topic + " " + str(msg.payload))
+        print(f'{msg.topic} {msg.payload}')
 
 
 sender = Sender()
