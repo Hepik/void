@@ -20,5 +20,6 @@ class Receiver:
             writer.writerow(msg.payload)
 
 
-receiver = Receiver()
+if __name__ == '__main__':
+    Receiver()
 
