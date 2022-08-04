@@ -10,6 +10,7 @@ class Sender(Generator):
         self.client = mqtt.Client()
         self.client.connect('localhost')
         self.client.on_connect = self._on_connect
+        self.poster()
         self.client.loop_forever()
 
     def post(self, number):
@@ -21,7 +22,6 @@ class Sender(Generator):
 
     def _on_connect(self, client, userdata, flags, rc):
         print(f"Connected with result code  {rc}")
-        self.poster()
 
 
     def poster(self):
