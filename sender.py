@@ -33,4 +33,5 @@ class Sender(Generator):
         print(f'{msg.topic} {msg.payload}')
 
 
-sender = Sender()
+if __name__ == '__main__':
+    Sender()
