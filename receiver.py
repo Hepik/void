@@ -13,7 +13,7 @@ class Receiver:
         self.client2.loop_forever()
 
     def on_message(self, client, userdata, msg):
-        print(msg.topic + " " + str(msg.payload))
+        print(f'{msg.topic} {msg.payload}')
 
         with open('numbers.csv', '+') as file:
             writer = csv.writer(file)

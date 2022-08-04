@@ -29,7 +29,6 @@ class Sender(Generator):
             self.post(i)
 
     def _on_message(self, client, userdata, msg):
-        print(msg.topic + " " + str(msg.payload))
         print(f'{msg.topic} {msg.payload}')
 
 
