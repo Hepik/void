@@ -1,17 +1,15 @@
 import paho.mqtt.client as mqtt
 
-from generator import Generator, generator
+from generator import Generator
 
 
-class Sender(Generator):
-    def __init__(self):
+class Sender():
+    def __init__(self, generator):
         print("<<<START>>>")
-        super().__init__()
+        self.generator = generator
         self.client = mqtt.Client()
         self.client.connect('localhost')
         self.client.on_connect = self._on_connect
-        self.poster()
-        self.client.loop_forever()
 
     def post(self, number):
         print("posting...")
@@ -23,9 +21,8 @@ class Sender(Generator):
     def _on_connect(self, client, userdata, flags, rc):
         print(f"Connected with result code  {rc}")
 
-
     def poster(self):
-        for i in generator.get_random_numbers():
+        for i in self.generator.get_random_numbers():
             self.post(i)
 
     def _on_message(self, client, userdata, msg):
@@ -33,4 +30,6 @@ class Sender(Generator):
 
 
 if __name__ == '__main__':
-    Sender()
+    generator = Generator(1, 1000000, 1)
+    sender = Sender(generator)
+    sender.poster()
