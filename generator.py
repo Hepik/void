@@ -1,4 +1,5 @@
 import random
+from time import sleep
 
 
 class Generator:
@@ -7,6 +8,7 @@ class Generator:
         while True:
             number = random.randint(1, 100000)
             yield number
+            sleep(1)
 
 
-object1 = Generator()
+generator = Generator()
