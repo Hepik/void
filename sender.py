@@ -20,7 +20,7 @@ class Sender(Generator):
         self.client.publish('/number', payload=number, qos=0, retain=False)
 
     def _on_connect(self, client, userdata, flags, rc):
-        print("Connected with result code " + str(rc))
+        print(f"Connected with result code  {rc}")
         self.poster()
 
 
