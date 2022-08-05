@@ -16,9 +16,9 @@ class Receiver:
         print(f'{msg.topic} {msg.payload}')
 
         with open('numbers.csv', 'a') as file:
-            file.write(msg.payload.decode() + ',')
+            file.write(msg.payload.decode() + '\n')
 
-            # writer = csv.writer(file)
+            # writer = csv.writer(file)'
             # writer.writerow(msg.payload)
 
 
