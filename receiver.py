@@ -1,25 +1,22 @@
-# import csv
-
+from datetime import datetime
 import paho.mqtt.client as mqtt
 
 
 class Receiver:
     def __init__(self):
-        super().__init__()
-        self.client2 = mqtt.Client()
-        self.client2.connect('localhost')
-        self.client2.subscribe('/number/#')
-        self.client2.on_message = self._on_message
-        self.client2.loop_forever()
+        self.client = mqtt.Client()
+        self.client.connect('localhost')
+        self.client.subscribe('/number/#')
+        self.client.on_message = self._on_message
+        self.client.loop_forever()
 
     def _on_message(self, client, userdata, msg):
         print(f'{msg.topic} {msg.payload}')
+        dt = datetime.now()
+        ts = datetime.timestamp(dt)
 
         with open('numbers.csv', 'a') as file:
-            file.write(msg.payload.decode() + '\n')
-
-            # writer = csv.writer(file)'
-            # writer.writerow(msg.payload)
+            file.write(f"{ts}\t{msg.payload.decode()}\n")
 
 
 if __name__ == '__main__':
