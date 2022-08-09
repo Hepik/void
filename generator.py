@@ -3,7 +3,7 @@ from time import sleep
 
 
 class Generator:
-    def __init__(self, sleep_time: int, max_value: int, min_value: int):
+    def __init__(self, sleep_time: int = 1, max_value: int = 1000000, min_value: int = 1):
         self.sleep_time = sleep_time
         self.max_value = max_value
         self.min_value = min_value
