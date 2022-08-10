@@ -17,7 +17,7 @@ class Sender:
 
         self.client.publish('/number', payload=number, qos=0, retain=False)
 
-    def receiving_numbers(self):
+    def get_numbers(self):
         for i in self.generator.get_random_numbers():
             self.post(i)
 
@@ -28,4 +28,4 @@ class Sender:
 if __name__ == '__main__':
     gen = Generator(1, 1000000, 1)
     sender = Sender(gen)
-    sender.receiving_numbers()
+    sender.get_numbers()
