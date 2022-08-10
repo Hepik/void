@@ -1,5 +1,5 @@
 import random
-from abc import ABC
+from abc import ABC, abstractmethod
 from time import sleep
 
 
@@ -9,6 +9,7 @@ class Generator(ABC):
         self.max_value = max_value
         self.min_value = min_value
 
+    @abstractmethod
     def get_random_numbers(self):
         while True:
             number = random.randint(self.min_value, self.max_value)
